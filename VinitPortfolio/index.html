@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vinit Kumar Choudhary - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #007bff;
+      --secondary-color: #f4f7f9;
+      --text-color: #333;
+      --text-color-light: #666;
+      --bg-color: #fff;
+      --footer-bg: #2c3e50;
+      --transition-duration: 0.3s;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-padding { padding: 6rem 0; }
+    .text-center { text-align: center; }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: #fff;
+      padding: 0.75rem 2rem;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: background-color var(--transition-duration), transform var(--transition-duration);
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover { background-color: #0056b3; transform: translateY(-3px); }
+
+    /* Header */
+    .header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000; padding: 1rem 0;
+    }
+    .header-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+
+    .nav-menu { display: flex; list-style: none; gap: 2rem; }
+    .nav-menu a { color: var(--text-color-light); font-weight: 600; text-decoration: none; }
+    .nav-menu a:hover { color: var(--primary-color); }
+    .menu-toggle { display: none; cursor: pointer; font-size: 1.8rem; color: var(--primary-color); }
+
+    /* Dropdown */
+    .dropdown { position: relative; }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0;
+      background: var(--bg-color);
+      list-style: none;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu li { margin: 0.5rem 0; }
+    .dropdown-menu a { color: var(--text-color); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background-color: var(--secondary-color);
+    }
+    .hero-content { text-align: center; padding-top: 5rem; }
+    .hero-content h1 { font-size: 3rem; font-weight: 700; }
+    .hero-content h1 span { color: var(--primary-color); }
+    .hero-content p { font-size: 1.2rem; margin: 1rem auto 2rem; max-width: 600px; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; position: relative; display: inline-block;
+    }
+    .section-title::after {
+      content: ''; display: block; width: 60px; height: 4px;
+      background: var(--primary-color); margin: 10px auto 0;
+    }
+
+    /* About */
+    .about-content { display: flex; align-items: center; gap: 3rem; }
+    .about-content img {
+      width: 300px; height: 300px; border-radius: 50%;
+      object-fit: cover; border: 5px solid #fff;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .skill-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform var(--transition-duration);
+    }
+    .skill-card:hover { transform: translateY(-8px); }
+    .skill-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem; }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: #fff; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform var(--transition-duration);
+    }
+    .project-card:hover { transform: translateY(-10px); }
+    .project-card img { width: 100%; height: 200px; object-fit: cover; }
+    .project-info { padding: 1.5rem; }
+
+    /* Contact */
+    .contact-form {
+      max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 8px;
+    }
+
+    /* Footer */
+    .footer { background: var(--footer-bg); color: #fff; padding: 2rem 0; }
+    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; }
+    .social-links a { color: #fff; font-size: 1.5rem; }
+    .social-links a:hover { color: var(--primary-color); transform: scale(1.1); }
+
+    /* Responsive */
+    @media(max-width:768px){
+      .nav-menu { display: none; flex-direction: column; position: absolute; top:70px; right:0; background: #fff; width: 100%; }
+      .nav-menu.active { display: flex; }
+      .menu-toggle { display: block; }
+      .about-content { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-content">
+      <a href="#" class="logo">Vinit</a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li class="dropdown">
+            <a href="#">Achievements <i class="fas fa-caret-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="https://leetcode.com/yourusername" target="_blank">LeetCode</a></li>
+              <li><a href="https://www.codechef.com/users/yourusername" target="_blank">CodeChef</a></li>
+              <li><a href="https://www.codingninjas.com/codestudio/profile/yourusername" target="_blank">Codestudio</a></li>
+              <li><a href="https://www.hackerrank.com/yourusername" target="_blank">HackerRank</a></li>
+              <li><a href="https://codolio.com/profile/Vinit121223/card" target="_blank">Codolio</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero section-padding text-center" id="hero">
+    <div class="container hero-content">
+      <h1>Hello, I'm <span>Vinit Kumar Choudhary</span></h1>
+      <p>Results-oriented Java Developer, Full Stack Web Developer, and Digital Marketing Enthusiast.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn">View My Work</a>
+        <a href="VINIT KUMAR CHOUDHARY (1).pdf" target="_blank" class="btn">Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section-padding" id="about">
+    <div class="container">
+      <h2 class="section-title text-center">About Me</h2>
+      <div class="about-content">
+        <img src="vinit.jpg" alt="Vinit Kumar Choudhary">
+        <div>
+          <h3>A Glimpse Into Who I Am</h3>
+          <p>
+            Results-oriented Java Developer, Full Stack Web Developer, and Digital Marketing Enthusiast with hands-on experience in developing scalable, secure web applications and databases using Java, SQL, HTML, CSS, JavaScript, and DSA.  
+            Proficient in SEO, Google Ads, and Social Media Marketing. Currently advancing in the MERN Stack and Data Analytics, with a strong commitment to delivering impactful, efficient digital solutions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section-padding" id="skills" style="background: var(--secondary-color);">
+    <div class="container text-center">
+      <h2 class="section-title">My Skills</h2>
+      <div class="skills-grid">
+        <!-- Languages -->
+        <div class="skill-card"><i class="fab fa-java"></i><h3>Java</h3></div>
+        <div class="skill-card"><i class="fab fa-js"></i><h3>JavaScript</h3></div>
+
+        <!-- Web Technologies -->
+        <div class="skill-card"><i class="fab fa-html5"></i><h3>HTML5</h3></div>
+        <div class="skill-card"><i class="fab fa-css3-alt"></i><h3>CSS3</h3></div>
+        <div class="skill-card"><i class="fas fa-laptop-code"></i><h3>Responsive Design</h3></div>
+
+        <!-- Database & DSA -->
+        <div class="skill-card"><i class="fas fa-database"></i><h3>SQL</h3></div>
+        <div class="skill-card"><i class="fas fa-project-diagram"></i><h3>DSA</h3></div>
+
+        <!-- Tools -->
+        <div class="skill-card"><i class="fab fa-git-alt"></i><h3>Git</h3></div>
+        <div class="skill-card"><i class="fas fa-code"></i><h3>VS Code</h3></div>
+        <div class="skill-card"><i class="fas fa-desktop"></i><h3>Eclipse</h3></div>
+
+        <!-- Digital Marketing -->
+        <div class="skill-card"><i class="fas fa-search"></i><h3>SEO</h3></div>
+        <div class="skill-card"><i class="fas fa-ad"></i><h3>Google Ads</h3></div>
+        <div class="skill-card"><i class="fab fa-facebook"></i><h3>Social Media Marketing</h3></div>
+        <div class="skill-card"><i class="fas fa-envelope"></i><h3>Email Marketing</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section-padding" id="projects">
+    <div class="container">
+      <h2 class="section-title text-center">My Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="https://via.placeholder.com/600x400?text=Project+1" alt="Project 1">
+          <div class="project-info">
+            <h3>Face Recognition Attendance System</h3>
+            <p>Java, SQL — Real-time face recognition-based attendance tracking for educational institutes.</p>
+            <a href="#" class="btn">View Project</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="https://via.placeholder.com/600x400?text=Project+2" alt="Project 2">
+          <div class="project-info">
+            <h3>E-Commerce Website</h3>
+            <p>Java, HTML, CSS, SQL — A responsive online shopping platform with cart and order management.</p>
+            <a href="#" class="btn">View Project</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="https://via.placeholder.com/600x400?text=Project+3" alt="Project 3">
+          <div class="project-info">
+            <h3>Hospital Management System</h3>
+            <p>Java, HTML, CSS, SQL — Patient record & appointment management system with secure SQL storage.</p>
+            <a href="#" class="btn">View Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section-padding" id="contact" style="background: var(--secondary-color);">
+    <div class="container text-center">
+      <h2 class="section-title">Contact Me</h2>
+      <form action="mailto:vinitchoudharyji11@gmail.com" method="post" enctype="text/plain" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2025 Vinit Kumar Choudhary. All Rights Reserved.</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/vinit-choudhary-7b772b278"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/yourusername"><i class="fab fa-github"></i></a>
+        <a href="mailto:vinitchoudharyji11@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+      navMenu.querySelectorAll('a').forEach(link =>
+        link.addEventListener('click', () => navMenu.classList.remove('active'))
+      );
+    });
+  </script>
+
+</body>
+</html>
